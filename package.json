@@ -1,0 +1,24 @@
+{
+  "name": "myfirstreactproject",
+  "description": "My First React Project",
+  "version": "0.0.1",
+  "devDependencies": {
+    "jshint": "latest",
+    "watch-http-server": "latest",
+    "browserify": "latest",
+    "watch": "latest",
+    "parallelshell": "latest"
+  },
+  "scripts":    {
+    "env":              "env",
+    "lint":             "jshint app/js/**.js",
+    "build:js":         "browserify app/js/load.js > public/load.js",
+    "build:html":       "cp app/html/index.html public/index.html",
+    "build":            "npm run build:js",
+    "prebuild":         "npm run lint",
+    "watch:serve":      "watch-http-server public -p 9090",
+    "watch:build:js":   "watch 'npm run build:js' app/js --wait=2",
+    "watch:build:html": "watch 'npm run build:html' app/html --wait=2", 
+    "watch":            "parallelshell 'npm run watch:serve' 'npm run watch:build:js' 'npm run watch:build:html' "
+  }
+}
